@@ -366,7 +366,7 @@ pub async fn start<E: Renderable + RenderableConfig>(
                 let frame_time = start.elapsed().as_secs_f32() - elapsed;
 
                 if frame_time < 0.014 {
-                    sleep(Duration::from_secs_f32(0.014 - frame_time));
+                    // sleep(Duration::from_secs_f32(0.014 - frame_time));
                 }
             }
             _ => {}

@@ -129,7 +129,7 @@ async fn run_francis() -> Result<(), Box<dyn Error>> {
         }
         Mode::Francis => {
             let mut francis =
-                Francis::new(&args.addr.expect("Please specify addr"), args.x, args.y)
+                Francis::new(args.addr.expect("Please specify addr"), args.x, args.y)
                     .await
                     .unwrap();
             println!("Created francis");

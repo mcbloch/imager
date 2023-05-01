@@ -4,6 +4,7 @@ use std::time::Duration;
 use std::time::Instant;
 
 use async_channel as mpsc;
+use async_std::net::TcpStream;
 use async_std::task::sleep;
 use futures_util::future::select;
 use futures_util::future::Either;
@@ -18,6 +19,9 @@ use crate::shadertoy::Example;
 use super::server::start_server;
 use super::Francis;
 use nanorand::{Rng, WyRand};
+
+use async_std::io::ReadExt;
+
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Options {
@@ -98,7 +102,7 @@ impl Handler {
             .map(|x| x.unwrap())
             .collect()
             .await;
-
+        
         let main = &clients[0];
         let (w, h) = (main.width(), main.height());
 
